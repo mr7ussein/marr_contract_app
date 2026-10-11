@@ -160,9 +160,12 @@ namespace marr_contract_app
                         Session["court_id_m2"] = courtid;
                         login_page.app_id_m2 = appid.ToString();
                         login_page.court_id_m2 = courtid.ToString();
-
-                        if (st == 1) Response.Redirect("main2.aspx");
-                        else if (st == 5) Response.Redirect("admin_form.aspx");
+                        if(srchCHK.Checked == true && st == 5)
+                        {
+                            Response.Redirect("admin_form.aspx");
+                        }
+                        else if (newCHK.Checked == true) Response.Redirect("main2.aspx");
+                       
                     }
                     else
                     {

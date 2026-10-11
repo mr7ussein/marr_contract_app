@@ -475,7 +475,7 @@ namespace marr_contract_app
             //////////////معلومات اساسية
             DataTable dt = new DataTable();
 
-            dt = BL.SEARCH_CONTRCTbyID(Int32.Parse(flag_id));
+            dt = BL.SEARCH_CONTRCTbyID(Decimal.Parse(flag_id));
             string courtId = dt.Rows[0]["MAIN_COURT_ID"].ToString();
             // Get court_id from DataKeys
 
@@ -509,7 +509,7 @@ namespace marr_contract_app
 
 
             con.Open();
-            SqlCommand cmd = new SqlCommand("delete from [baghdad].[BAYA].PICTURE  where id=" + flag_id + " and R_N='" + txtR_N.Text + "' and P_N1='" + txt1.Text + "' and P_N2='" + txt2.Text + "' and  P_N3='" + txt3.Text + "'", con);
+            SqlCommand cmd = new SqlCommand("delete from [BAYA].PICTURE  where id=" + flag_id + " and R_N='" + txtR_N.Text + "' and P_N1='" + txt1.Text + "' and P_N2='" + txt2.Text + "' and  P_N3='" + txt3.Text + "'", con);
             int result = cmd.ExecuteNonQuery();
             con.Close();
             if (result == 1)
@@ -547,7 +547,7 @@ namespace marr_contract_app
                 con.Open();
                 SqlCommand cmd =
                     new SqlCommand(
-                        "insert into [baghdad].[BAYA].PICTURE ([id],[R_N],[P_N1],[P_N2],[P_N3],[p_N4]) values('" + Decimal.Parse(flag_id) + "','" +
+                        "insert into [BAYA].PICTURE ([id],[R_N],[P_N1],[P_N2],[P_N3],[p_N4]) values('" + Decimal.Parse(flag_id) + "','" +
                         inRN.Text + "','" + inTXT1.Text + "','" + inTXT2.Text + "','" + inTXT3.Text +"','"+inTXT4.Text+ "')", con);
                 int result = cmd.ExecuteNonQuery();
                 con.Close();

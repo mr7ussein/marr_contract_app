@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Resources;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -99,7 +94,7 @@ namespace marr_contract_app
                 if (dt.Rows.Count > 0)
                 {
                     //BL.insert_user(txt2.Text, txt3.Text, txt5.Text, Int32.Parse(app_name.SelectedValue), Int32.Parse(court_name.SelectedValue), Int32.Parse(txt6.Text), Int32.Parse(dt.Rows[0][0].ToString()), Int32.Parse(txt8.Text), Int32.Parse(Select3.Value), txt1.Text);
-                    BL.insert_user_main2(Int32.Parse(dt.Rows[0][0].ToString()), txt2.Text, txt3.Text, txt1.Text, Int32.Parse(app_name.SelectedValue), Int32.Parse(court_name.SelectedValue),1);
+                    BL.insert_user_main2(Int32.Parse(dt.Rows[0][0].ToString()), txt2.Text, txt3.Text, txt1.Text, Int32.Parse(app_name.SelectedValue), Int32.Parse(court_name.SelectedValue), Int32.Parse(Select3.Value));
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('تم الحفظ بنجـاح')", true);
                     Button33.Enabled = false;
                     Button33.CssClass = "hide";
@@ -193,23 +188,43 @@ namespace marr_contract_app
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            
             string cs = ConfigurationManager.ConnectionStrings["marriageContract"].ConnectionString;
 
-            SqlConnection con = new SqlConnection(cs);
-            string backupDIR = "C:\\نسخة احتياطية لعقود الزواج";
+            // Get all available drive letters except C:
+            var drives = System.IO.DriveInfo.GetDrives();
+            string partitionLetter = null;
+            foreach (var drive in drives)
+            {
+                if (drive.IsReady && !string.Equals(drive.Name.Substring(0, 2), "C:", StringComparison.OrdinalIgnoreCase))
+                {
+                    partitionLetter = drive.Name.Substring(0, 2); // e.g., "D:"
+                    break;
+                }
+            }
+
+            // If no other partition, fallback to C: and show a message
+            if (partitionLetter == null)
+            {
+                partitionLetter = "C:";
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('لا يوجد قسم آخر غير C:، سيتم الحفظ في القسم C:')", true);
+            }
+
+            string backupDIR = partitionLetter + "\\نسخة احتياطية لعقود الزواج";
             if (!System.IO.Directory.Exists(backupDIR))
             {
                 System.IO.Directory.CreateDirectory(backupDIR);
             }
             try
             {
-                con.Open();
-                SqlCommand sqlcmd = new SqlCommand();
-                sqlcmd = new SqlCommand("backup database baghdad  to disk='" + backupDIR + "\\" + DateTime.Now.ToString("dd_MM_yyyy_") + "Back_up_marriage_contracts'", con);
-                sqlcmd.ExecuteNonQuery();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('تمت العملية بنجاح. ')", true);
-                con.Close();
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    con.Open();
+                    string backupFile = backupDIR + "\\" + DateTime.Now.ToString("dd_MM_yyyy_") + "Back_up_marriage_contracts";
+                    SqlCommand sqlcmd = new SqlCommand("backup database marriage_contracts to disk='" + backupFile + "'", con);
+                    sqlcmd.CommandTimeout = 600; // Wait up to 10 minutes for backup
+                    sqlcmd.ExecuteNonQuery();
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('تمت العملية بنجاح. ')", true);
+                }
             }
             catch (Exception dx)
             {

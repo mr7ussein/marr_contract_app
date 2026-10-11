@@ -33,21 +33,12 @@ namespace marr_contract_app
         protected global::System.Web.UI.WebControls.Image Image1;
 
         /// <summary>
-        /// txt1 control.
+        /// Button_img control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect txt1;
-
-        /// <summary>
-        /// txt2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlSelect txt2;
+        protected global::System.Web.UI.WebControls.Button Button_img;
     }
 }

@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Web;
 
 namespace marr_contract_app.BL
 {
@@ -798,7 +793,7 @@ public void insert_with_edit(int id,string p_n1,string p_n2,string p_n3,string p
             param[5] = new SqlParameter("@court_id", SqlDbType.Int);
             param[5].Value = courtName;
             param[6] = new SqlParameter("@stutesCode", SqlDbType.Int);
-            param[6].Value = 1;
+            param[6].Value = status;
 
 
             DAL.open();

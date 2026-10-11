@@ -175,9 +175,9 @@
 <asp:textbox CssClass="Textbox"  id="txt2" placeholder="اسم المستخدم" width="80px" runat="server"></asp:textbox>
 <asp:textbox CssClass="Textbox"  id="txt3" width="80px" placeholder=" كلمة المرور " runat="server"></asp:textbox>
 حالة المستخدم:<select name="court_name" id="Select3" width="50px" runat="server">
-<option VALUE="1">ادخال</option>
-    <option VALUE="2">تدقيق</option>
-    <option VALUE="3">غير مفعل</option>
+<option value="1">ادخال</option>
+    <option value="2">تدقيق</option>
+    <option value="3">غير مفعل</option>
 </select> 
                        </td>
                 </tr>

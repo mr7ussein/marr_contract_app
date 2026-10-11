@@ -1,9 +1,5 @@
-﻿
-
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="main2.aspx.cs" Inherits="marr_contract_app.main2" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="main2.aspx.cs" Inherits="marr_contract_app.main2" %>
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>عـقود الزواج </title>
@@ -112,6 +108,9 @@
 
 
                 <tr>
+                  
+  
+    
             <td colspan=3> <asp:Label ID="Labelt" runat="server" Text=" التولد "></asp:Label></td>
             <td colspan=2>
                 
@@ -121,13 +120,17 @@
  <asp:textbox CssClass="Textbox"  ID="TextBox12" runat="server"></asp:TextBox>
                 </td>
         </tr>
-                <tr>
+                <tr> <td></td>
+     <td></td>
+   
                       <td colspan=2> <asp:Label ID="Label5" runat="server" Text="العـــدد "></asp:Label></td>
             <td>
                 
  <asp:textBox CssClass="Textbox"  ID="srch_record_no" runat="server"></asp:textBox> </td>
                      </tr>
-                 <tr>
+                 <tr> <td></td>
+     <td></td>
+    
             <td colspan=2> <asp:Label ID="Label19" runat="server" Text="التاريـــــــخ"></asp:Label></td>
             <td>
                 
@@ -254,7 +257,7 @@
                <td colspan="2"><asp:Label ID="Label3" runat="server" Text="الزوجة"></asp:Label> </td>
            </tr>
                <tr>
-            <td colspan="3"> <asp:Label ID="Label1" runat="server" Text=" الاسم الثلاثي "></asp:Label></td>
+            <td colspan="3"> <asp:Label ID="Label1" runat="server" Text=" الاسم الثلاثي :"></asp:Label></td>
             <td colspan="2">
                 
 <asp:textbox CssClass="Textbox"  id="txt4" width="60px" placeholder="الاسم " runat="server"></asp:textbox><asp:textbox CssClass="Textbox"  id="txt5" placeholder=" اسم الاب" width="60px" runat="server"></asp:textbox><asp:textbox CssClass="Textbox"  id="txt6" width="60px" placeholder=" اسم الجد" runat="server"></asp:textbox><asp:textbox CssClass="hide"  id="txt7"  placeholder=" اللقب" width="60px" runat="server"></asp:textbox>
@@ -272,7 +275,7 @@
 
         </tr>
            <tr>
-            <td colspan=3> <asp:Label ID="Label10" runat="server" Text="التولد "></asp:Label></td>
+            <td colspan=3> <asp:Label ID="Label10" runat="server" Text="التولد :"></asp:Label></td>
             <td colspan=2>
                 
  <asp:textbox CssClass="Textbox"  ID="datepicker2"  width="200px" runat="server"></asp:TextBox>
@@ -282,7 +285,7 @@
                 </td>
         </tr>
            <tr>
-            <td colspan=3> <asp:Label ID="Label11" runat="server" Text="الحالة الزوجية "></asp:Label></td>
+            <td colspan=3> <asp:Label ID="Label11" runat="server" Text="الحالة الزوجية :"></asp:Label></td>
             <td colspan=2>
                 
 <select name="marr_status" id="txt26" runat="server"   width="250px">
